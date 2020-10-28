@@ -43,6 +43,8 @@ function drawPaddle(){
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
+document.addEventListener("touchstart", touchHandler);
+document.addEventListener("touchmove", touchHandler);
 
 function keyDownHandler(e) {
     if(e.keyCode == 39) {
@@ -58,6 +60,15 @@ function keyUpHandler(e) {
     }
     else if(e.keyCode == 37) {
         leftArrow = false;
+    }
+}
+
+function touchHandler(e) {
+    if(e.touches) {
+        playerX = e.touches[0].pageX - canvas.offsetLeft - playerWidth / 2;
+        playerY = e.touches[0].pageY - canvas.offsetTop - playerHeight / 2;
+        output.innerHTML = "Touch: "+ " x: " + playerX + ", y: " + playerY;
+        e.preventDefault();
     }
 }
 

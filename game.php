@@ -77,7 +77,7 @@
         <div id="restart">Play Again!</div>
     </div>
    
-    <canvas id="breakout" width="1500" height="800"></canvas>
+    <canvas id="canvas" width="1500" height="800"></canvas>
 
     <script src="script.js"></script>
 </body>

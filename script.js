@@ -65,8 +65,8 @@ function keyUpHandler(e) {
 
 function touchHandler(e) {
     if(e.touches) {
-        paddle.x = e.touches[0].pageX - canvas.offsetLeft - paddle.width / 2;
-        paddle.y = e.touches[0].pageY - canvas.offsetTop - paddle.height / 2;
+        paddle.x = e.touches[0].clientX - canvas.offsetLeft - paddle.width / 2;
+        paddle.y = e.touches[0].clientY - canvas.offsetTop - paddle.height / 2;
         //output.innerHTML = "Touch: "+ " x: " + paddle.x + ", y: " + paddle.y;
         e.preventDefault();
     }

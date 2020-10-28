@@ -25,6 +25,14 @@
         body{
             background: black;
         }
+        #sound{
+            width: 30px;
+            height : 30px;
+            cursor: pointer;
+            position: absolute;
+            top : 465px;
+            left : 15px;
+        }
         #gameover{
             position: absolute;
             margin-top: 0px;
@@ -69,6 +77,10 @@
         <h1>
        Hi, <?php echo $_POST["name"]; ?>
         </h1>   
+    </div>
+    
+    <div class="sound">
+        <img src="img/SOUND_ON.png" alt="" id="sound">
     </div>
     
     <div id="gameover">

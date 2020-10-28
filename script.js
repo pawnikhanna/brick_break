@@ -12,24 +12,24 @@ const ctx = canvas.getContext("2d");
 
 ctx.lineWidth = 3;
 
-const PADDLE_WIDTH = 170;
-const PADDLE_MARGIN_BOTTOM = 50;
-const PADDLE_HEIGHT = 20;
-const BALL_RADIUS = 13;
+const paddleWidth = 170;
+const paddleMarginBottom = 50;
+const paddleHeight = 20;
+const ballRadius = 13;
 let LIFE = 3; 
 let SCORE = 0;  
-const SCORE_UNIT = 10;
+const scoreUnit = 10;
 let LEVEL = 1;
-const MAX_LEVEL = 3;
+const maxLevel = 3;
 let GAME_OVER = false;
 let leftArrow = false;
 let rightArrow = false;
 
-const paddle = {
-    x : canvas.width/2 - PADDLE_WIDTH/2,
-    y : canvas.height - PADDLE_MARGIN_BOTTOM - PADDLE_HEIGHT,
-    width : PADDLE_WIDTH,
-    height : PADDLE_HEIGHT,
+let paddle = {
+    x : canvas.width/2 - paddleWidth/2,
+    y : canvas.height - paddleMarginBottom - paddleHeight,
+    width : paddleWidth,
+    height : paddleHeight,
     dx :10
 }
 
@@ -69,10 +69,10 @@ function movePaddle(){
     }
 }
 
-const ball = {
+let ball = {
     x : canvas.width/2,
-    y : paddle.y - BALL_RADIUS,
-    radius : BALL_RADIUS,
+    y : paddle.y - ballRadius,
+    radius : ballRadius,
     speed : 8,
     dx : 8 * (Math.random() * 2 - 1),
     dy : -8
@@ -99,24 +99,24 @@ function moveBall(){
 function ballWallCollision(){
     if(ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0){
         ball.dx = - ball.dx;
-        (new Audio('./sounds/paddle_hit')).play();
+        (new Audio('./sounds/paddle_hit.mp3')).play();
     }
     
     if(ball.y - ball.radius < 0){
         ball.dy = -ball.dy;
-        (new Audio('./sounds/paddle_hit')).play();
+        (new Audio('./sounds/paddle_hit.mp3')).play();
     }
     
     if(ball.y + ball.radius > canvas.height){
         LIFE--; 
-        (new Audio('./sounds/life_lost')).play();
+        (new Audio('./sounds/life_lost.mp3')).play();
         resetBall();
     }
 }
 
 function resetBall(){
     ball.x = canvas.width/2;
-    ball.y = paddle.y - BALL_RADIUS;
+    ball.y = paddle.y - ballRadius;
     ball.dx = 8 * (Math.random() * 2 - 1);
     ball.dy = -8;
 }
@@ -124,7 +124,7 @@ function resetBall(){
 function ballPaddleCollision(){
     if(ball.x < paddle.x + paddle.width && ball.x > paddle.x && paddle.y < paddle.y + paddle.height && ball.y > paddle.y){
         
-        (new Audio('./sounds/paddle_hit')).play();
+        (new Audio('./sounds/paddle_hit.mp3')).play();
         
         let collidePoint = ball.x - (paddle.x + paddle.width/2);
         
@@ -138,7 +138,7 @@ function ballPaddleCollision(){
     }
 }
 
-const brick = {
+let brick = {
     row : 3,
     column : 9,
     width : 145,
@@ -205,10 +205,10 @@ function ballBrickCollision(){
             let b = bricks[r][c];
             if(b.status){
                 if(ball.x + ball.radius > b.x && ball.x - ball.radius < b.x + brick.width && ball.y + ball.radius > b.y && ball.y - ball.radius < b.y + brick.height){
-                    (new Audio('./sounds/brick_hit')).play();
+                    (new Audio('./sounds/brick_hit.mp3')).play();
                     ball.dy = - ball.dy;
                     b.status = false; 
-                    SCORE += SCORE_UNIT;
+                    SCORE += scoreUnit;
                 }
             }
         }
@@ -260,9 +260,9 @@ function levelUp(){
     }
     
     if(isLevelDone){
-        (new Audio('./sounds/win')).play();
+        (new Audio('./sounds/win.mp3')).play();
         
-        if(LEVEL >= MAX_LEVEL){
+        if(LEVEL >= maxLevel){
             showYouWin();
             GAME_OVER = true;
             return;

@@ -115,6 +115,12 @@ function mouseMoveHandler(e) {
     if (relativeX > 0 && relativeX < canvas.width) {
         paddle.x = relativeX - paddle.width;
     }
+    if (paddle.x < 0) {
+        paddle.x = 0;
+    }
+    if ((paddle.x + paddle.width) > canvas.width) {
+        paddle.x = canvas.width - paddle.width;
+    }
 }
 
 function touchHandler(e) {
@@ -687,7 +693,7 @@ soundElement.addEventListener("click", audioManager);
 
 function audioManager(){
     let imgSrc = soundElement.getAttribute("src");
-    let SOUND_IMG = imgSrc == "img/SOUND_OFF.png" ? "img/SOUND_ON.png" : "img/SOUND_OFF.png";
+    let SOUND_IMG = imgSrc == "img/SOUND_ON.png" ? "img/SOUND_OFF.png" : "img/SOUND_ON.png";
     
     soundElement.setAttribute("src", SOUND_IMG);
     

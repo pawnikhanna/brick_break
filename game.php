@@ -80,7 +80,7 @@
     </div>
     
     <div class="sound">
-        <img src="img/SOUND_OFF.png" alt="" id="sound">
+        <img src="img/SOUND_ON.png" alt="" id="sound">
     </div>
     
     <div id="gameover">

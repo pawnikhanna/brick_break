@@ -21,13 +21,13 @@
             width: 240px;
             background-color: black;
             color:white;
-        }
+        } 
         body{
             background: black;
         }
         #sound{
-            width: 30px;
-            height : 30px;
+            width: 40px;
+            height : 40px;
             cursor: pointer;
             position: absolute;
             top : 465px;
@@ -89,7 +89,7 @@
         <div id="restart">Play Again!</div>
     </div>
    
-    <canvas id="canvas" width="1500" height="800"></canvas>
+    <canvas id="canvas" width="1500" height="800"></canvas>    
 
     <script src="script.js"></script>
 </body>
